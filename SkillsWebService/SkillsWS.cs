@@ -44,5 +44,11 @@ namespace SkillsWebService
             get { return stringValue; }
             set { stringValue = value; }
         }
+
+        [DataMember]
+        public string pobierz(string nazwa)
+        {
+            return nazwa;
+        }
     }
 }
