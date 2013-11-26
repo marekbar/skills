@@ -20,7 +20,8 @@ namespace SkillsWebService
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        int SkillAdd(Skills skill);
     }
 
 
@@ -43,12 +44,6 @@ namespace SkillsWebService
         {
             get { return stringValue; }
             set { stringValue = value; }
-        }
-
-        [DataMember]
-        public string pobierz(string nazwa)
-        {
-            return nazwa;
         }
     }
 }
