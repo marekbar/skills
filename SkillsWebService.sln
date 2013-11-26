@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsWebService", "SkillsWebService\SkillsWebService.csproj", "{4E55E643-553C-4C3C-B6C5-06219EF55663}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsAndTasks", "SkillsAndTasks\SkillsAndTasks.csproj", "{94431F69-9C6D-4964-8751-9EEE577D0745}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94431F69-9C6D-4964-8751-9EEE577D0745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94431F69-9C6D-4964-8751-9EEE577D0745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94431F69-9C6D-4964-8751-9EEE577D0745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94431F69-9C6D-4964-8751-9EEE577D0745}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
