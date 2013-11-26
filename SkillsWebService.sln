@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsWebService", "SkillsWebService\SkillsWebService.csproj", "{4E55E643-553C-4C3C-B6C5-06219EF55663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skills", "Skills\Skills.csproj", "{A464E9E5-658D-4F2F-B62A-8A29E9AD9D46}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLib", "DataLib\DataLib.csproj", "{D7D8ADB0-5F0F-4E31-994F-51F286C63973}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,14 +13,6 @@ Global
 		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E55E643-553C-4C3C-B6C5-06219EF55663}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A464E9E5-658D-4F2F-B62A-8A29E9AD9D46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A464E9E5-658D-4F2F-B62A-8A29E9AD9D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A464E9E5-658D-4F2F-B62A-8A29E9AD9D46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A464E9E5-658D-4F2F-B62A-8A29E9AD9D46}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7D8ADB0-5F0F-4E31-994F-51F286C63973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7D8ADB0-5F0F-4E31-994F-51F286C63973}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7D8ADB0-5F0F-4E31-994F-51F286C63973}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7D8ADB0-5F0F-4E31-994F-51F286C63973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
