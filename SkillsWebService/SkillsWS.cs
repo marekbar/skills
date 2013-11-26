@@ -19,9 +19,6 @@ namespace SkillsWebService
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        [OperationContract]
-        int SkillAdd(Skills skill);
     }
 
 
