@@ -8,40 +8,51 @@ using System.Text;
 
 namespace SkillsAndTasks
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IService
     {
+        [OperationContract]
+        List<Skill> getSkills();
 
         [OperationContract]
-        string GetData(int value);
+        List<Task> getTasks();
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        List<User> getUsers();
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        List<UserSkill> getUserSkills();
+
+        [OperationContract]
+        DatabaseData getDatabase();
+
+        [OperationContract]
+        Response sendLocalDatabase(DatabaseData db);
     }
 
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
-    public class CompositeType
+    public class DatabaseData
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [DataMember]
+        public List<User> Users { get; set; }
 
         [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        public List<Skill> Skills { get; set; }
 
         [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        public List<Task> Tasks { get; set; }
+
+        [DataMember]
+        public List<UserSkill> UserSkills { get; set; }
+    }
+
+    [DataContract]
+    public class Response
+    {
+        [DataMember]
+        public bool Result { get; set; }
+
+        [DataMember]
+        public String Error { get; set; }
     }
 }

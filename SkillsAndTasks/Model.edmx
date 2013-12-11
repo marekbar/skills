@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="marekbarModelStoreContainer">
+          <EntitySet Name="Skills" EntityType="marekbarModel.Store.Skills" store:Type="Tables" store:Schema="dbo" store:Name="Skills">
+            <DefiningQuery>SELECT 
+      [Skills].[id] AS [id], 
+      [Skills].[name] AS [name], 
+      [Skills].[description] AS [description]
+      FROM [dbo].[Skills] AS [Skills]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tasks" EntityType="marekbarModel.Store.Tasks" store:Type="Tables" store:Schema="dbo" store:Name="Tasks">
+            <DefiningQuery>SELECT 
+      [Tasks].[id] AS [id], 
+      [Tasks].[task] AS [task], 
+      [Tasks].[description] AS [description], 
+      [Tasks].[creation_date] AS [creation_date], 
+      [Tasks].[created_by] AS [created_by], 
+      [Tasks].[assigned_to_user] AS [assigned_to_user], 
+      [Tasks].[modification_date] AS [modification_date], 
+      [Tasks].[modified_by] AS [modified_by], 
+      [Tasks].[is_finished] AS [is_finished], 
+      [Tasks].[status] AS [status]
+      FROM [dbo].[Tasks] AS [Tasks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Users" EntityType="marekbarModel.Store.Users" store:Type="Tables" store:Schema="dbo" store:Name="Users">
+            <DefiningQuery>SELECT 
+      [Users].[id] AS [id], 
+      [Users].[name] AS [name], 
+      [Users].[surname] AS [surname], 
+      [Users].[login] AS [login], 
+      [Users].[password] AS [password], 
+      [Users].[town] AS [town], 
+      [Users].[mail] AS [mail], 
+      [Users].[phone] AS [phone]
+      FROM [dbo].[Users] AS [Users]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills">
+            <DefiningQuery>SELECT 
+      [UserSkills].[id] AS [id], 
+      [UserSkills].[user_id] AS [user_id], 
+      [UserSkills].[skill_id] AS [skill_id]
+      FROM [dbo].[UserSkills] AS [UserSkills]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Odnaleziono błędy podczas generowania:
+      ostrzeżenie 6002: Dla tabeli/widoku „dbede1d1d89e704096b560a2800174d813.dbo.Skills” nie zdefiniowano klucza podstawowego. Klucz został wywnioskowany, a definicja została utworzona jako tabela/widok tylko do odczytu.
+      -->
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="description" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Odnaleziono błędy podczas generowania:
+      ostrzeżenie 6002: Dla tabeli/widoku „dbede1d1d89e704096b560a2800174d813.dbo.Tasks” nie zdefiniowano klucza podstawowego. Klucz został wywnioskowany, a definicja została utworzona jako tabela/widok tylko do odczytu.
+      -->
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="task" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="creation_date" />
+            <PropertyRef Name="created_by" />
+            <PropertyRef Name="is_finished" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="task" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="assigned_to_user" Type="int" />
+          <Property Name="modification_date" Type="datetime" />
+          <Property Name="modified_by" Type="int" />
+          <Property Name="is_finished" Type="bit" Nullable="false" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Odnaleziono błędy podczas generowania:
+      ostrzeżenie 6002: Dla tabeli/widoku „dbede1d1d89e704096b560a2800174d813.dbo.Users” nie zdefiniowano klucza podstawowego. Klucz został wywnioskowany, a definicja została utworzona jako tabela/widok tylko do odczytu.
+      -->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="surname" />
+            <PropertyRef Name="login" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="town" />
+            <PropertyRef Name="mail" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="town" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="mail" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Odnaleziono błędy podczas generowania:
+      ostrzeżenie 6002: Dla tabeli/widoku „dbede1d1d89e704096b560a2800174d813.dbo.UserSkills” nie zdefiniowano klucza podstawowego. Klucz został wywnioskowany, a definicja została utworzona jako tabela/widok tylko do odczytu.
+      -->
+        <EntityType Name="UserSkills">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="skill_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="skill_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="addUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="skill_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="delUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="modUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="skill_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="skillDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="skill_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="skillGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="skillGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="skillsAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="skillUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="taskAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="task" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="creation_date" Type="datetime" Mode="In" />
+          <Parameter Name="created_by" Type="int" Mode="In" />
+          <Parameter Name="assigned_to_user" Type="int" Mode="In" />
+          <Parameter Name="modification_date" Type="datetime" Mode="In" />
+          <Parameter Name="modified_by" Type="int" Mode="In" />
+          <Parameter Name="is_finished" Type="bit" Mode="In" />
+          <Parameter Name="status" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="taskDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="taskGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="taskGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="taskUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="task" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="creation_date" Type="datetime" Mode="In" />
+          <Parameter Name="created_by" Type="int" Mode="In" />
+          <Parameter Name="assigned_to_user" Type="int" Mode="In" />
+          <Parameter Name="modification_date" Type="datetime" Mode="In" />
+          <Parameter Name="modified_by" Type="int" Mode="In" />
+          <Parameter Name="is_finished" Type="bit" Mode="In" />
+          <Parameter Name="status" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="userAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="surname" Type="nvarchar" Mode="In" />
+          <Parameter Name="login" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="town" Type="nvarchar" Mode="In" />
+          <Parameter Name="mail" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="userDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="userGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="userGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="userUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="surname" Type="nvarchar" Mode="In" />
+          <Parameter Name="login" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="town" Type="nvarchar" Mode="In" />
+          <Parameter Name="mail" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="marekbarModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="marekbarEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Skills" EntityType="marekbarModel.Skills" />
+          <EntitySet Name="Tasks" EntityType="marekbarModel.Tasks" />
+          <EntitySet Name="Users" EntityType="marekbarModel.Users" />
+          <EntitySet Name="UserSkills" EntityType="marekbarModel.UserSkills" />
+          <FunctionImport Name="addUserSkills">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="skill_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="delUserSkills">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getUserSkills" ReturnType="Collection(marekbarModel.getUserSkills_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="modUserSkills">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="skill_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="skillDelete">
+            <Parameter Name="skill_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="skillGet" ReturnType="Collection(marekbarModel.skillGet_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="skillGetAll" ReturnType="Collection(marekbarModel.skillGetAll_Result)" />
+          <FunctionImport Name="skillsAdd">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="skillUpdate">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="taskAdd">
+            <Parameter Name="task" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="creation_date" Mode="In" Type="DateTime" />
+            <Parameter Name="created_by" Mode="In" Type="Int32" />
+            <Parameter Name="assigned_to_user" Mode="In" Type="Int32" />
+            <Parameter Name="modification_date" Mode="In" Type="DateTime" />
+            <Parameter Name="modified_by" Mode="In" Type="Int32" />
+            <Parameter Name="is_finished" Mode="In" Type="Boolean" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="taskDelete">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="taskGet" ReturnType="Collection(marekbarModel.taskGet_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="taskGetAll" ReturnType="Collection(marekbarModel.taskGetAll_Result)" />
+          <FunctionImport Name="taskUpdate">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="task" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="creation_date" Mode="In" Type="DateTime" />
+            <Parameter Name="created_by" Mode="In" Type="Int32" />
+            <Parameter Name="assigned_to_user" Mode="In" Type="Int32" />
+            <Parameter Name="modification_date" Mode="In" Type="DateTime" />
+            <Parameter Name="modified_by" Mode="In" Type="Int32" />
+            <Parameter Name="is_finished" Mode="In" Type="Boolean" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="userAdd">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="surname" Mode="In" Type="String" />
+            <Parameter Name="login" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="town" Mode="In" Type="String" />
+            <Parameter Name="mail" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="userDelete">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="userGet" ReturnType="Collection(marekbarModel.userGet_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="userGetAll" ReturnType="Collection(marekbarModel.userGetAll_Result)" />
+          <FunctionImport Name="userUpdate">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="surname" Mode="In" Type="String" />
+            <Parameter Name="login" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="town" Mode="In" Type="String" />
+            <Parameter Name="mail" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="description" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="task" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="creation_date" />
+            <PropertyRef Name="created_by" />
+            <PropertyRef Name="is_finished" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="task" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_by" Type="Int32" Nullable="false" />
+          <Property Name="assigned_to_user" Type="Int32" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+          <Property Name="modified_by" Type="Int32" />
+          <Property Name="is_finished" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="surname" />
+            <PropertyRef Name="login" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="town" />
+            <PropertyRef Name="mail" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="town" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserSkills">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="skill_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="skill_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="getUserSkills_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Surname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Town" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Phone" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Skill" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="skillGet_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="skillGetAll_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="taskGet_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="task" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="false" />
+          <Property Type="DateTime" Name="creation_date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="created_by" Nullable="false" />
+          <Property Type="Int32" Name="assigned_to_user" Nullable="true" />
+          <Property Type="DateTime" Name="modification_date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="modified_by" Nullable="true" />
+          <Property Type="Boolean" Name="is_finished" Nullable="false" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="taskGetAll_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="task" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="false" />
+          <Property Type="DateTime" Name="creation_date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="created_by" Nullable="false" />
+          <Property Type="Int32" Name="assigned_to_user" Nullable="true" />
+          <Property Type="DateTime" Name="modification_date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="modified_by" Nullable="true" />
+          <Property Type="Boolean" Name="is_finished" Nullable="false" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="userGet_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="surname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="login" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="town" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="userGetAll_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="surname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="login" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="town" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="marekbarModelStoreContainer" CdmEntityContainer="marekbarEntities">
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="marekbarModel.Skills">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="marekbarModel.Tasks">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task" ColumnName="task" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="assigned_to_user" ColumnName="assigned_to_user" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="is_finished" ColumnName="is_finished" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="marekbarModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSkills">
+            <EntityTypeMapping TypeName="marekbarModel.UserSkills">
+              <MappingFragment StoreEntitySet="UserSkills">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="addUserSkills" FunctionName="marekbarModel.Store.addUserSkills" />
+          <FunctionImportMapping FunctionImportName="delUserSkills" FunctionName="marekbarModel.Store.delUserSkills" />
+          <FunctionImportMapping FunctionImportName="getUserSkills" FunctionName="marekbarModel.Store.getUserSkills">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.getUserSkills_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="modUserSkills" FunctionName="marekbarModel.Store.modUserSkills" />
+          <FunctionImportMapping FunctionImportName="skillDelete" FunctionName="marekbarModel.Store.skillDelete" />
+          <FunctionImportMapping FunctionImportName="skillGet" FunctionName="marekbarModel.Store.skillGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.skillGet_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="skillGetAll" FunctionName="marekbarModel.Store.skillGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.skillGetAll_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="skillsAdd" FunctionName="marekbarModel.Store.skillsAdd" />
+          <FunctionImportMapping FunctionImportName="skillUpdate" FunctionName="marekbarModel.Store.skillUpdate" />
+          <FunctionImportMapping FunctionImportName="taskAdd" FunctionName="marekbarModel.Store.taskAdd" />
+          <FunctionImportMapping FunctionImportName="taskDelete" FunctionName="marekbarModel.Store.taskDelete" />
+          <FunctionImportMapping FunctionImportName="taskGet" FunctionName="marekbarModel.Store.taskGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.taskGet_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task" ColumnName="task" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="assigned_to_user" ColumnName="assigned_to_user" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="is_finished" ColumnName="is_finished" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="taskGetAll" FunctionName="marekbarModel.Store.taskGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.taskGetAll_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task" ColumnName="task" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="assigned_to_user" ColumnName="assigned_to_user" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="is_finished" ColumnName="is_finished" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="taskUpdate" FunctionName="marekbarModel.Store.taskUpdate" />
+          <FunctionImportMapping FunctionImportName="userAdd" FunctionName="marekbarModel.Store.userAdd" />
+          <FunctionImportMapping FunctionImportName="userDelete" FunctionName="marekbarModel.Store.userDelete" />
+          <FunctionImportMapping FunctionImportName="userGet" FunctionName="marekbarModel.Store.userGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.userGet_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="userGetAll" FunctionName="marekbarModel.Store.userGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.userGetAll_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="userUpdate" FunctionName="marekbarModel.Store.userUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
