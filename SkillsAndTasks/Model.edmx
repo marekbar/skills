@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="marekbarModelStoreContainer">
           <EntitySet Name="Skills" EntityType="marekbarModel.Store.Skills" store:Type="Tables" store:Schema="dbo" store:Name="Skills">
             <DefiningQuery>SELECT 
@@ -36,7 +36,8 @@
       [Users].[password] AS [password], 
       [Users].[town] AS [town], 
       [Users].[mail] AS [mail], 
-      [Users].[phone] AS [phone]
+      [Users].[phone] AS [phone], 
+      [Users].[is_verified] AS [is_verified]
       FROM [dbo].[Users] AS [Users]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills">
@@ -96,6 +97,7 @@
             <PropertyRef Name="town" />
             <PropertyRef Name="mail" />
             <PropertyRef Name="phone" />
+            <PropertyRef Name="is_verified" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -105,6 +107,7 @@
           <Property Name="town" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="mail" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="is_verified" Type="bit" Nullable="false" />
         </EntityType>
         <!--Odnaleziono błędy podczas generowania:
       ostrzeżenie 6002: Dla tabeli/widoku „dbede1d1d89e704096b560a2800174d813.dbo.UserSkills” nie zdefiniowano klucza podstawowego. Klucz został wywnioskowany, a definicja została utworzona jako tabela/widok tylko do odczytu.
@@ -122,6 +125,10 @@
         <Function Name="addUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_id" Type="int" Mode="In" />
           <Parameter Name="skill_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="checkUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="login" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="delUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -206,8 +213,7 @@
           <Parameter Name="mail" Type="nvarchar" Mode="In" />
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="marekbarModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -221,10 +227,10 @@
             <Parameter Name="skill_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delUserSkills">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getUserSkills" ReturnType="Collection(marekbarModel.getUserSkills_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="modUserSkills">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -232,10 +238,10 @@
             <Parameter Name="skill_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="skillDelete">
-            <Parameter Name="skill_id" Mode="In" Type="Int32" />
+          <Parameter Name="skill_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="skillGet" ReturnType="Collection(marekbarModel.skillGet_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="skillGetAll" ReturnType="Collection(marekbarModel.skillGetAll_Result)" />
           <FunctionImport Name="skillsAdd">
@@ -259,10 +265,10 @@
             <Parameter Name="status" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="taskDelete">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="taskGet" ReturnType="Collection(marekbarModel.taskGet_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="taskGetAll" ReturnType="Collection(marekbarModel.taskGetAll_Result)" />
           <FunctionImport Name="taskUpdate">
@@ -287,10 +293,10 @@
             <Parameter Name="phone" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="userDelete">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="userGet" ReturnType="Collection(marekbarModel.userGet_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="userGetAll" ReturnType="Collection(marekbarModel.userGetAll_Result)" />
           <FunctionImport Name="userUpdate">
@@ -302,6 +308,10 @@
             <Parameter Name="town" Mode="In" Type="String" />
             <Parameter Name="mail" Mode="In" Type="String" />
             <Parameter Name="phone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="checkUser">
+            <Parameter Name="login" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Skills">
@@ -344,6 +354,7 @@
             <PropertyRef Name="town" />
             <PropertyRef Name="mail" />
             <PropertyRef Name="phone" />
+            <PropertyRef Name="is_verified" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
@@ -353,6 +364,7 @@
           <Property Name="town" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="mail" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="phone" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Boolean" Name="is_verified" Nullable="false" />
         </EntityType>
         <EntityType Name="UserSkills">
           <Key>
@@ -462,6 +474,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="marekbarModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="is_verified" ColumnName="is_verified" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
@@ -586,6 +599,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="userUpdate" FunctionName="marekbarModel.Store.userUpdate" />
+          <FunctionImportMapping FunctionImportName="checkUser" FunctionName="marekbarModel.Store.checkUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

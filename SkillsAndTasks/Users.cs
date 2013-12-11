@@ -22,5 +22,6 @@ namespace SkillsAndTasks
         public string town { get; set; }
         public string mail { get; set; }
         public string phone { get; set; }
+        public bool is_verified { get; set; }
     }
 }

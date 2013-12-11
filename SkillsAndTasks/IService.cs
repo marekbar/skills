@@ -12,6 +12,13 @@ namespace SkillsAndTasks
     public interface IService
     {
         [OperationContract]
+        bool createAccount(User user);
+
+
+        [OperationContract]
+        bool login(String name, String password);
+
+        [OperationContract]
         List<Skill> getSkills();
 
         [OperationContract]

@@ -56,5 +56,29 @@ namespace SkillsAndTasks
                 return false;
             }
         }
+
+        public bool create()
+        {
+            return save();
+        }
+
+        public bool CanWork()
+        {
+            try
+            {
+                if(db.checkUser(Login, Password) == 1)
+                {
+                    return true;
+                }
+                    else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

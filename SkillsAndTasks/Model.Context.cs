@@ -335,5 +335,18 @@ namespace SkillsAndTasks
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userUpdate", idParameter, nameParameter, surnameParameter, loginParameter, passwordParameter, townParameter, mailParameter, phoneParameter);
         }
+    
+        public virtual int checkUser(string login, string password)
+        {
+            var loginParameter = login != null ?
+                new ObjectParameter("login", login) :
+                new ObjectParameter("login", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("checkUser", loginParameter, passwordParameter);
+        }
     }
 }

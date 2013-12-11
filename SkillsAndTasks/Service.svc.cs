@@ -14,6 +14,18 @@ namespace SkillsAndTasks
     {
         marekbarEntities db = new marekbarEntities();
 
+        public bool createAccount(User user)
+        {
+            return user.create();
+        }
+
+        public bool login(String name, String password)
+        {
+            var user = new User();
+            user.Login = name;
+            user.Password = password;
+            return user.CanWork();
+        }
 
         public List<Skill> getSkills()
         {
