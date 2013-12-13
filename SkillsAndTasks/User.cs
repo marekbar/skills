@@ -66,14 +66,7 @@ namespace SkillsAndTasks
         {
             try
             {
-                if(db.checkUser(Login, Password) == 1)
-                {
-                    return true;
-                }
-                    else
-                {
-                    return false;
-                }
+                return db.checkUser(Login, Password) == 1;     
             }
             catch
             {

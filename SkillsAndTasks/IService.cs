@@ -9,7 +9,7 @@ using System.Text;
 namespace SkillsAndTasks
 {
     [ServiceContract]
-    public interface IService
+    public interface IMBService
     {
         [OperationContract]
         bool createAccount(User user);
