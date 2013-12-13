@@ -28,10 +28,9 @@ namespace SkillsAndTasks
         {
             try
             {
-                Id = db.userAdd(Name, Surname, Login, Password, Town, Mail, Phone);
-                code = getCode(Id);
-                db.userSetCode(Id, code);
-
+                code = getCode();
+                Id = db.userAdd(Name, Surname, Login, Password, Town, Mail, Phone, code);
+                
                 var activation = new ActivateAccount(this, code);
                 if (!activation.sendCode()) throw new Exception("Kod aktywacyjny nie został wysłany. Skontaktuj się z marekbar1985@gmail.com");
                 return true;
@@ -85,10 +84,10 @@ namespace SkillsAndTasks
             }
         }
 
-        private String getCode(int userId)
+        private String getCode()
         {
             RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
-            return rsg.Generate(10) + userId.ToString();
+            return DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + rsg.Generate(10) + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
         }
     }
 }

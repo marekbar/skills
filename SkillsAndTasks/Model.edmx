@@ -202,6 +202,7 @@
           <Parameter Name="town" Type="nvarchar" Mode="In" />
           <Parameter Name="mail" Type="nvarchar" Mode="In" />
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="code" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="userDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -298,15 +299,6 @@
             <Parameter Name="is_finished" Mode="In" Type="Boolean" />
             <Parameter Name="status" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="userAdd">
-            <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="surname" Mode="In" Type="String" />
-            <Parameter Name="login" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
-            <Parameter Name="town" Mode="In" Type="String" />
-            <Parameter Name="mail" Mode="In" Type="String" />
-            <Parameter Name="phone" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="userDelete">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -338,6 +330,16 @@
           </FunctionImport>
           <FunctionImport Name="userSetCode">
             <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="userAdd">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="surname" Mode="In" Type="String" />
+            <Parameter Name="login" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="town" Mode="In" Type="String" />
+            <Parameter Name="mail" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
             <Parameter Name="code" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -598,7 +600,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="taskUpdate" FunctionName="marekbarModel.Store.taskUpdate" />
-          <FunctionImportMapping FunctionImportName="userAdd" FunctionName="marekbarModel.Store.userAdd" />
           <FunctionImportMapping FunctionImportName="userDelete" FunctionName="marekbarModel.Store.userDelete" />
           <FunctionImportMapping FunctionImportName="userGet" FunctionName="marekbarModel.Store.userGet">
             <ResultMapping>
@@ -633,6 +634,7 @@
           <FunctionImportMapping FunctionImportName="userLoginExists" FunctionName="marekbarModel.Store.userLoginExists" />
           <FunctionImportMapping FunctionImportName="userAccountActivate" FunctionName="marekbarModel.Store.userAccountActivate" />
           <FunctionImportMapping FunctionImportName="userSetCode" FunctionName="marekbarModel.Store.userSetCode" />
+          <FunctionImportMapping FunctionImportName="userAdd" FunctionName="marekbarModel.Store.userAdd" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

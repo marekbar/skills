@@ -243,39 +243,6 @@ namespace SkillsAndTasks
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("taskUpdate", idParameter, taskParameter, descriptionParameter, creation_dateParameter, created_byParameter, assigned_to_userParameter, modification_dateParameter, modified_byParameter, is_finishedParameter, statusParameter);
         }
     
-        public virtual int userAdd(string name, string surname, string login, string password, string town, string mail, string phone)
-        {
-            var nameParameter = name != null ?
-                new ObjectParameter("name", name) :
-                new ObjectParameter("name", typeof(string));
-    
-            var surnameParameter = surname != null ?
-                new ObjectParameter("surname", surname) :
-                new ObjectParameter("surname", typeof(string));
-    
-            var loginParameter = login != null ?
-                new ObjectParameter("login", login) :
-                new ObjectParameter("login", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            var townParameter = town != null ?
-                new ObjectParameter("town", town) :
-                new ObjectParameter("town", typeof(string));
-    
-            var mailParameter = mail != null ?
-                new ObjectParameter("mail", mail) :
-                new ObjectParameter("mail", typeof(string));
-    
-            var phoneParameter = phone != null ?
-                new ObjectParameter("phone", phone) :
-                new ObjectParameter("phone", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userAdd", nameParameter, surnameParameter, loginParameter, passwordParameter, townParameter, mailParameter, phoneParameter);
-        }
-    
         public virtual int userDelete(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -378,6 +345,43 @@ namespace SkillsAndTasks
                 new ObjectParameter("code", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userSetCode", idParameter, codeParameter);
+        }
+    
+        public virtual int userAdd(string name, string surname, string login, string password, string town, string mail, string phone, string code)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var surnameParameter = surname != null ?
+                new ObjectParameter("surname", surname) :
+                new ObjectParameter("surname", typeof(string));
+    
+            var loginParameter = login != null ?
+                new ObjectParameter("login", login) :
+                new ObjectParameter("login", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var townParameter = town != null ?
+                new ObjectParameter("town", town) :
+                new ObjectParameter("town", typeof(string));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("mail", mail) :
+                new ObjectParameter("mail", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userAdd", nameParameter, surnameParameter, loginParameter, passwordParameter, townParameter, mailParameter, phoneParameter, codeParameter);
         }
     }
 }
