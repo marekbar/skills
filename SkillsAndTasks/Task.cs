@@ -57,5 +57,33 @@ namespace SkillsAndTasks
                return false;
            }
         }
+
+        public static List<Task> GetFromDatabaseAll()
+        {
+            List<Task> tasks = new List<Task>();
+            try
+            {
+                marekbarEntities db = new marekbarEntities();
+                foreach (var item in db.taskGetAll().ToList())
+                {
+                    var task = new Task();
+
+                    task.Id = item.id;
+                    task.TaskName = item.task;
+                    task.Description = item.description;
+                    task.AssignedTo = (int)item.assigned_to_user;
+                    task.CreatedBy = item.created_by;
+                    task.CreationDate = item.creation_date;
+                    task.IsFinished = item.is_finished;
+                    task.ModificationDate = (DateTime)item.modification_date;
+                    task.ModifiedBy = (int)item.modified_by;
+                    task.Status = item.status;
+                   
+                    tasks.Add(task);
+                }
+            }
+            catch { }
+            return tasks;
+        }
     }
 }

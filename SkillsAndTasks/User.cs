@@ -89,5 +89,30 @@ namespace SkillsAndTasks
             RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
             return DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + rsg.Generate(10) + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
         }
+
+        public static List<User> GetFromDatabaseAll()
+        {
+            List<User> users = new List<User>();
+            try
+            {
+                marekbarEntities db = new marekbarEntities();
+
+                foreach (var item in db.userGetAll().ToList())
+                {
+                    var user = new User();
+                    user.Name = item.name;
+                    user.Surname = item.surname;
+                    user.Id = item.id;
+                    user.Login = item.login;
+                    user.Password = "";
+                    user.Phone = item.phone;
+                    user.Mail = item.mail;
+                    user.Town = item.town;
+                    users.Add(user);
+                }
+            }
+            catch { }
+            return users;
+        }
     }
 }

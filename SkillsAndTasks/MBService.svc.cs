@@ -103,44 +103,9 @@ namespace SkillsAndTasks
             return result;
         }
 
-        public List<Skill> getSkills()
-        {
-            List<Skill> skills = new List<Skill>();
-
-            return skills;
-        }
-
-        public List<Task> getTasks()
-        {
-            List<Task> tasks = new List<Task>();
-
-            return tasks;
-        }
-
-        public List<User> getUsers()
-        {
-            List<User> users = new List<User>();
-
-            return users;
-        }
-
-        public List<UserSkill> getUserSkills()
-        {
-            List<UserSkill> us = new List<UserSkill>();
-            
-            return us;
-        }
-
         public DatabaseData getDatabase()
         {
-            return new DatabaseData();
-        }
-
-        public Response sendLocalDatabase(DatabaseData db)
-        {
-            Response r = new Response();
-
-            return r;
+            return DatabaseData.Get();
         }
     }
 }

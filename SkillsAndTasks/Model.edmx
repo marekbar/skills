@@ -219,6 +219,7 @@
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="code" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="userSkillsGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="userUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
@@ -342,6 +343,7 @@
             <Parameter Name="phone" Mode="In" Type="String" />
             <Parameter Name="code" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="userSkillsGetAll" ReturnType="Collection(marekbarModel.userSkillsGetAll_Result)" />
         </EntityContainer>
         <EntityType Name="Skills">
           <Key>
@@ -470,6 +472,11 @@
           <Property Type="String" Name="town" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="mail" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="userSkillsGetAll_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="skill_id" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -635,6 +642,15 @@
           <FunctionImportMapping FunctionImportName="userAccountActivate" FunctionName="marekbarModel.Store.userAccountActivate" />
           <FunctionImportMapping FunctionImportName="userSetCode" FunctionName="marekbarModel.Store.userSetCode" />
           <FunctionImportMapping FunctionImportName="userAdd" FunctionName="marekbarModel.Store.userAdd" />
+          <FunctionImportMapping FunctionImportName="userSkillsGetAll" FunctionName="marekbarModel.Store.userSkillsGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="marekbarModel.userSkillsGetAll_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

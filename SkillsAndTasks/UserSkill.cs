@@ -50,5 +50,28 @@ namespace SkillsAndTasks
                 return false;
             }
         }
+
+        public static List<UserSkill> GetFromDatabaseAll()
+        {
+            List<UserSkill> userSkills = new List<UserSkill>();
+
+            try 
+            {
+                marekbarEntities db = new marekbarEntities();
+
+                foreach (var item in db.userSkillsGetAll().ToList())
+                {
+                    var us = new UserSkill();
+                    us.Id = item.id;
+                    us.UserId = item.user_id;
+                    us.SkillId = item.skill_id;
+                    userSkills.Add(us);
+                }
+                
+            }
+            catch { }
+
+            return userSkills;
+        }
     }
 }

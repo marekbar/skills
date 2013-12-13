@@ -383,5 +383,10 @@ namespace SkillsAndTasks
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userAdd", nameParameter, surnameParameter, loginParameter, passwordParameter, townParameter, mailParameter, phoneParameter, codeParameter);
         }
+    
+        public virtual ObjectResult<userSkillsGetAll_Result> userSkillsGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<userSkillsGetAll_Result>("userSkillsGetAll");
+        }
     }
 }
