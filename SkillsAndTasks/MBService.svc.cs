@@ -107,5 +107,93 @@ namespace SkillsAndTasks
         {
             return DatabaseData.Get();
         }
+
+        public Response createSkill(Skill skill)
+        {
+            Response result = new Response();
+
+            try
+            {
+                if (skill.save())
+                {
+                    result.Result = true;
+                    result.HasError = false;
+                    result.Error = "";
+                }
+                else
+                {
+                    result.Result = true;
+                    result.HasError = true;
+                    result.Error = "Umiejętność nie została dodana.";
+                }
+            }
+            catch(Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+            }
+
+            return result;
+        }
+        
+        Response createTask(Task task)
+        {
+            Response result = new Response();
+
+            try
+            {
+                if (task.save())
+                {
+                    result.Result = true;
+                    result.HasError = false;
+                    result.Error = "";
+                }
+                else
+                {
+                    result.Result = true;
+                    result.HasError = true;
+                    result.Error = "Zadanie nie zostało dodane.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+            }
+
+            return result;
+        }
+        
+
+        Response createUserSkill(UserSkill us)
+        {
+            Response result = new Response();
+
+            try
+            {
+                if (us.save())
+                {
+                    result.Result = true;
+                    result.HasError = false;
+                    result.Error = "";
+                }
+                else
+                {
+                    result.Result = true;
+                    result.HasError = true;
+                    result.Error = "Umiejętność nie została powiązana z użytkownikiem.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+            }
+
+            return result;
+        }
     }
 }

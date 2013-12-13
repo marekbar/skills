@@ -15,6 +15,15 @@ namespace SkillsAndTasks
         Response createAccount(User user);
 
         [OperationContract]
+        Response createSkill(Skill skill);
+
+        [OperationContract]
+        Response createTask(Task task);
+
+        [OperationContract]
+        Response createUserSkill(UserSkill us);
+
+        [OperationContract]
         Response loginExists(String name);
 
         [OperationContract]
