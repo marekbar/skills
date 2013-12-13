@@ -41,48 +41,54 @@ namespace SkillsAndTasks
                 result.Result = user.create();
                 if (result.Result)
                 {
-                    String code = getCode(user.Id);
-                    db.userSetCode(user.Id, code);
-                    sendEmail(user.Mail, "Aktywacja konta w aplikacji Umiejętności i zadania",
-                        @"
-                            Witaj, " + user.Name + " " + user.Surname + @"
-
-                            Otrzymujesz tego maila, w celu aktywacji konta w aplikacji Umiejętności i zadania.
-
-                            Twój kod:" + code + @"
-
-                            Jeśli masz pytania: marekbar1985@gmail.com
-                        ");
+                    var activation = new ActivateAccount(user);
+                    if (!activation.sendCode())
+                    {
+                        result.Error = "Kod aktywacyjny nie został wysłany. Skontaktuj się z marekbar1985@gmail.com";
+                        result.HasError = true;
+                    }
+                    else
+                    {
+                        result.Error = "";
+                    }
                 }
-                result.Error = "";
             }
             catch (Exception ex)
             {
                 result.Result = false;
+                result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
             }
             return result;
         }
 
-        private String getCode(int userId)
+        public Response activateByCode(String code)
         {
-            RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
-            return rsg.Generate(10) + userId.ToString();
-        }
-
-        private bool sendEmail(String email, String title, String message)
-        {
-            var mail = new Mail();
-            mail.MailList.Add(email);
-            mail.Server = "smtp.gmail.com";
-            mail.From = "skillsandtasks@gmail.com";
-            mail.isEnabled = true;
-            mail.isSSL = true;
-            mail.Port = 465;
-            mail.Login = "skillsandtasks";
-            mail.Password = "qqlka123!@";
-            mail.Message = message;
-            return mail.send(message, title);
+            Response result = new Response();
+            try
+            {
+                var isActivated = new System.Data.Objects.ObjectParameter("result",false);
+                db.userAccountActivate(code, isActivated);
+                if ((bool)isActivated.Value)
+                {
+                    result.Result = true;
+                    result.HasError = false;
+                    result.Error = "";
+                }
+                else
+                {
+                    result.Result = true;
+                    result.HasError = true;
+                    result.Error = "Konto nie zostało aktywowane.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.HasError = true;
+                result.Result = false;
+                result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
+            }
+            return result;
         }
 
         public Response login(String name, String password)

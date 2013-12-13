@@ -17,6 +17,8 @@ namespace SkillsAndTasks
         [OperationContract]
         Response loginExists(String name);
 
+        [OperationContract]
+        Response activateByCode(String code);
 
         [OperationContract]
         Response login(String name, String password);
