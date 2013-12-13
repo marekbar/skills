@@ -14,29 +14,55 @@ namespace SkillsAndTasks
     {
         marekbarEntities db = new marekbarEntities();
 
-        public bool loginExists(String login)
+        public Response loginExists(String login)
         {
+            Response result = new Response();
             try
             {
-                return db.userLoginExists(login) == 1;
+                result.Result = db.userLoginExists(login) == 1;
+                result.Error = "";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                result.Result = false;
+                result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
             }
+            return result;
         }
 
-        public bool createAccount(User user)
+        public Response createAccount(User user)
         {
-            return user.create();
+            Response result = new Response();
+            try
+            {
+                result.Result = user.create();
+                result.Error = "";
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
+            }
+            return result;
         }
 
-        public bool login(String name, String password)
+        public Response login(String name, String password)
         {
+            Response result = new Response();
             var user = new User();
             user.Login = name;
             user.Password = password;
-            return user.CanWork();
+            try
+            {
+                result.Result = user.CanWork();
+                result.Error = "";
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
+            }
+            return result;
         }
 
         public List<Skill> getSkills()

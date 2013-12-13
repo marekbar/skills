@@ -12,14 +12,14 @@ namespace SkillsAndTasks
     public interface IMBService
     {
         [OperationContract]
-        bool createAccount(User user);
+        Response createAccount(User user);
 
         [OperationContract]
-        bool loginExists(String name);
+        Response loginExists(String name);
 
 
         [OperationContract]
-        bool login(String name, String password);
+        Response login(String name, String password);
 
         [OperationContract]
         List<Skill> getSkills();
