@@ -67,7 +67,7 @@ namespace SkillsAndTasks
             Response result = new Response();
             try
             {
-                var isActivated = new System.Data.Objects.ObjectParameter("result",false);
+                var isActivated = new System.Data.Objects.ObjectParameter("result",0);
                 db.userAccountActivate(code, isActivated);
                 if ((bool)isActivated.Value)
                 {

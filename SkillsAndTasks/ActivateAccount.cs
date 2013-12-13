@@ -10,18 +10,18 @@ namespace SkillsAndTasks
     {
         private marekbarEntities db = new marekbarEntities();
         private User user = null;
+        private String code = "";
         public ActivateAccount(User user)
         {
             this.user = user;
+            code = getCode(user.Id);
+            db.userSetCode(user.Id, code);
         }
 
         public bool sendCode()
         {
             try
             {
-                String code = getCode(user.Id);
-                db.userSetCode(user.Id, code);
-
                 Gmail mail = new Gmail();
                 mail.Login = "skillsandtasks";
                 mail.Password = "qqlka123!@";
