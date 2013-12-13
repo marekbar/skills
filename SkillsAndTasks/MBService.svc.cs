@@ -14,6 +14,18 @@ namespace SkillsAndTasks
     {
         marekbarEntities db = new marekbarEntities();
 
+        public bool loginExists(String login)
+        {
+            try
+            {
+                return db.userLoginExists(login) == 1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool createAccount(User user)
         {
             return user.create();

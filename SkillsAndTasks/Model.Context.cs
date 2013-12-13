@@ -348,5 +348,14 @@ namespace SkillsAndTasks
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("checkUser", loginParameter, passwordParameter);
         }
+    
+        public virtual int userLoginExists(string login)
+        {
+            var loginParameter = login != null ?
+                new ObjectParameter("login", login) :
+                new ObjectParameter("login", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userLoginExists", loginParameter);
+        }
     }
 }

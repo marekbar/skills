@@ -14,6 +14,9 @@ namespace SkillsAndTasks
         [OperationContract]
         bool createAccount(User user);
 
+        [OperationContract]
+        bool loginExists(String name);
+
 
         [OperationContract]
         bool login(String name, String password);

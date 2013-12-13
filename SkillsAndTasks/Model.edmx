@@ -203,6 +203,9 @@
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="userGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="userLoginExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="login" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="userUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
@@ -312,6 +315,9 @@
           <FunctionImport Name="checkUser">
             <Parameter Name="login" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="userLoginExists">
+            <Parameter Name="login" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Skills">
@@ -600,6 +606,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="userUpdate" FunctionName="marekbarModel.Store.userUpdate" />
           <FunctionImportMapping FunctionImportName="checkUser" FunctionName="marekbarModel.Store.checkUser" />
+          <FunctionImportMapping FunctionImportName="userLoginExists" FunctionName="marekbarModel.Store.userLoginExists" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
