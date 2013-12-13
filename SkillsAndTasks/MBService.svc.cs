@@ -137,7 +137,7 @@ namespace SkillsAndTasks
             return result;
         }
         
-        Response createTask(Task task)
+        public Response createTask(Task task)
         {
             Response result = new Response();
 
@@ -167,7 +167,7 @@ namespace SkillsAndTasks
         }
         
 
-        Response createUserSkill(UserSkill us)
+        public Response createUserSkill(UserSkill us)
         {
             Response result = new Response();
 
