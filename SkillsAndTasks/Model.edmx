@@ -37,7 +37,8 @@
       [Users].[town] AS [town], 
       [Users].[mail] AS [mail], 
       [Users].[phone] AS [phone], 
-      [Users].[is_verified] AS [is_verified]
+      [Users].[is_verified] AS [is_verified], 
+      [Users].[code] AS [code]
       FROM [dbo].[Users] AS [Users]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills">
@@ -98,6 +99,7 @@
             <PropertyRef Name="mail" />
             <PropertyRef Name="phone" />
             <PropertyRef Name="is_verified" />
+            <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -108,6 +110,7 @@
           <Property Name="mail" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="is_verified" Type="bit" Nullable="false" />
+          <Property Name="code" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Odnaleziono błędy podczas generowania:
       ostrzeżenie 6002: Dla tabeli/widoku „dbede1d1d89e704096b560a2800174d813.dbo.UserSkills” nie zdefiniowano klucza podstawowego. Klucz został wywnioskowany, a definicja została utworzona jako tabela/widok tylko do odczytu.
@@ -187,6 +190,10 @@
           <Parameter Name="is_finished" Type="bit" Mode="In" />
           <Parameter Name="status" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="userAccountActivate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="code" Type="nvarchar" Mode="In" />
+          <Parameter Name="result" Type="bit" Mode="InOut" />
+        </Function>
         <Function Name="userAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="surname" Type="nvarchar" Mode="In" />
@@ -206,6 +213,10 @@
         <Function Name="userLoginExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="login" Type="nvarchar" Mode="In" />
           <Parameter Name="result" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="userSetCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="code" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="userUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -321,6 +332,14 @@
             <Parameter Name="login" Mode="In" Type="String" />
             <Parameter Name="result" Mode="InOut" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="userAccountActivate">
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="userSetCode">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Skills">
           <Key>
@@ -363,6 +382,7 @@
             <PropertyRef Name="mail" />
             <PropertyRef Name="phone" />
             <PropertyRef Name="is_verified" />
+            <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
@@ -373,6 +393,7 @@
           <Property Name="mail" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="phone" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Type="Boolean" Name="is_verified" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserSkills">
           <Key>
@@ -482,6 +503,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="marekbarModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="is_verified" ColumnName="is_verified" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -609,6 +631,8 @@
           <FunctionImportMapping FunctionImportName="userUpdate" FunctionName="marekbarModel.Store.userUpdate" />
           <FunctionImportMapping FunctionImportName="checkUser" FunctionName="marekbarModel.Store.checkUser" />
           <FunctionImportMapping FunctionImportName="userLoginExists" FunctionName="marekbarModel.Store.userLoginExists" />
+          <FunctionImportMapping FunctionImportName="userAccountActivate" FunctionName="marekbarModel.Store.userAccountActivate" />
+          <FunctionImportMapping FunctionImportName="userSetCode" FunctionName="marekbarModel.Store.userSetCode" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

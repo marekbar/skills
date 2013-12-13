@@ -74,6 +74,7 @@
     <Compile Include="getUserSkills_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mail.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +95,7 @@
     </Compile>
     <Compile Include="IMBService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomStringGenerator.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="skillGetAll_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>

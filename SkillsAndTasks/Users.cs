@@ -23,5 +23,6 @@ namespace SkillsAndTasks
         public string mail { get; set; }
         public string phone { get; set; }
         public bool is_verified { get; set; }
+        public string code { get; set; }
     }
 }

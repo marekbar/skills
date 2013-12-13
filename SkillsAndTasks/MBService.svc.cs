@@ -39,6 +39,21 @@ namespace SkillsAndTasks
             try
             {
                 result.Result = user.create();
+                if (result.Result)
+                {
+                    String code = getCode(user.Id);
+                    db.userSetCode(user.Id, code);
+                    sendEmail(user.Mail, "Aktywacja konta w aplikacji Umiejętności i zadania",
+                        @"
+                            Witaj, " + user.Name + " " + user.Surname + @"
+
+                            Otrzymujesz tego maila, w celu aktywacji konta w aplikacji Umiejętności i zadania.
+
+                            Twój kod:" + code + @"
+
+                            Jeśli masz pytania: marekbar1985@gmail.com
+                        ");
+                }
                 result.Error = "";
             }
             catch (Exception ex)
@@ -47,6 +62,27 @@ namespace SkillsAndTasks
                 result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
             }
             return result;
+        }
+
+        private String getCode(int userId)
+        {
+            RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
+            return rsg.Generate(10) + userId.ToString();
+        }
+
+        private bool sendEmail(String email, String title, String message)
+        {
+            var mail = new Mail();
+            mail.MailList.Add(email);
+            mail.Server = "smtp.gmail.com";
+            mail.From = "skillsandtasks@gmail.com";
+            mail.isEnabled = true;
+            mail.isSSL = true;
+            mail.Port = 465;
+            mail.Login = "skillsandtasks";
+            mail.Password = "qqlka123!@";
+            mail.Message = message;
+            return mail.send(message, title);
         }
 
         public Response login(String name, String password)

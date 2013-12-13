@@ -357,5 +357,27 @@ namespace SkillsAndTasks
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userLoginExists", loginParameter, result);
         }
+    
+        public virtual int userAccountActivate(string code, ObjectParameter result)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userAccountActivate", codeParameter, result);
+        }
+    
+        public virtual int userSetCode(Nullable<int> id, string code)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userSetCode", idParameter, codeParameter);
+        }
     }
 }
