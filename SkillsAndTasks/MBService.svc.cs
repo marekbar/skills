@@ -19,12 +19,15 @@ namespace SkillsAndTasks
             Response result = new Response();
             try
             {
-                result.Result = db.userLoginExists(login) == 1;
+                var hasLogin = new System.Data.Objects.ObjectParameter("result", 0);
+                db.userLoginExists(login, hasLogin);
+                result.Result = (bool)hasLogin.Value;
                 result.Error = "";
             }
             catch (Exception ex)
             {
                 result.Result = false;
+                result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
             }
             return result;

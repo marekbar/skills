@@ -64,5 +64,8 @@ namespace SkillsAndTasks
 
         [DataMember]
         public String Error { get; set; }
+
+        [DataMember]
+        public bool HasError { get; set; }
     }
 }
