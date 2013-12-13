@@ -18,11 +18,22 @@ namespace SkillsAndTasks
         public String Mail { get; set; }
         public String Phone { get; set; }
 
+        private String code = "";
+        public String GetCode()
+        {
+            return code;
+        }
+
         public bool save()
         {
             try
             {
                 Id = db.userAdd(Name, Surname, Login, Password, Town, Mail, Phone);
+                code = getCode(Id);
+                db.userSetCode(Id, code);
+
+                var activation = new ActivateAccount(this, code);
+                if (!activation.sendCode()) throw new Exception("Kod aktywacyjny nie został wysłany. Skontaktuj się z marekbar1985@gmail.com");
                 return true;
             }
             catch
@@ -72,6 +83,12 @@ namespace SkillsAndTasks
             {
                 return false;
             }
+        }
+
+        private String getCode(int userId)
+        {
+            RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
+            return rsg.Generate(10) + userId.ToString();
         }
     }
 }

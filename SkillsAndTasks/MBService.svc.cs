@@ -41,16 +41,9 @@ namespace SkillsAndTasks
                 result.Result = user.create();
                 if (result.Result)
                 {
-                    var activation = new ActivateAccount(user);
-                    if (!activation.sendCode())
-                    {
-                        result.Error = "Kod aktywacyjny nie został wysłany. Skontaktuj się z marekbar1985@gmail.com";
-                        result.HasError = true;
-                    }
-                    else
-                    {
-                        result.Error = "";
-                    }
+                    result.Result = true;
+                    result.HasError = false;
+                    result.Error = "";
                 }
             }
             catch (Exception ex)

@@ -8,14 +8,12 @@ namespace SkillsAndTasks
 {
     public class ActivateAccount
     {
-        private marekbarEntities db = new marekbarEntities();
         private User user = null;
         private String code = "";
-        public ActivateAccount(User user)
+        public ActivateAccount(User user, String code)
         {
             this.user = user;
-            code = getCode(user.Id);
-            db.userSetCode(user.Id, code);
+            this.code = code;
         }
 
         public bool sendCode()
@@ -52,10 +50,6 @@ namespace SkillsAndTasks
             }
         }
 
-        private String getCode(int userId)
-        {
-            RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
-            return rsg.Generate(10) + userId.ToString();
-        }
+       
     }
 }
