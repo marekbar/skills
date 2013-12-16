@@ -33,19 +33,6 @@ namespace SkillsAndTasks
         public DbSet<Users> Users { get; set; }
         public DbSet<UserSkills> UserSkills { get; set; }
     
-        public virtual int addUserSkills(Nullable<int> user_id, Nullable<int> skill_id)
-        {
-            var user_idParameter = user_id.HasValue ?
-                new ObjectParameter("user_id", user_id) :
-                new ObjectParameter("user_id", typeof(int));
-    
-            var skill_idParameter = skill_id.HasValue ?
-                new ObjectParameter("skill_id", skill_id) :
-                new ObjectParameter("skill_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addUserSkills", user_idParameter, skill_idParameter);
-        }
-    
         public virtual int delUserSkills(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -102,19 +89,6 @@ namespace SkillsAndTasks
         public virtual ObjectResult<skillGetAll_Result> skillGetAll()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<skillGetAll_Result>("skillGetAll");
-        }
-    
-        public virtual int skillsAdd(string name, string description)
-        {
-            var nameParameter = name != null ?
-                new ObjectParameter("name", name) :
-                new ObjectParameter("name", typeof(string));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("description", description) :
-                new ObjectParameter("description", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("skillsAdd", nameParameter, descriptionParameter);
         }
     
         public virtual int skillUpdate(Nullable<int> id, string name, string description)
@@ -387,6 +361,32 @@ namespace SkillsAndTasks
                 new ObjectParameter("status", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("taskAdd", taskParameter, descriptionParameter, creation_dateParameter, created_byParameter, assigned_to_userParameter, modification_dateParameter, modified_byParameter, is_finishedParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> addUserSkills(Nullable<int> user_id, Nullable<int> skill_id)
+        {
+            var user_idParameter = user_id.HasValue ?
+                new ObjectParameter("user_id", user_id) :
+                new ObjectParameter("user_id", typeof(int));
+    
+            var skill_idParameter = skill_id.HasValue ?
+                new ObjectParameter("skill_id", skill_id) :
+                new ObjectParameter("skill_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("addUserSkills", user_idParameter, skill_idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> skillsAdd(string name, string description)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("skillsAdd", nameParameter, descriptionParameter);
         }
     }
 }

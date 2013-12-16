@@ -16,7 +16,7 @@ namespace SkillsAndTasks
         {
             try
             {
-                Id = db.skillsAdd(Name, Description);
+                Id = (int)db.skillsAdd(Name, Description).FirstOrDefault().Value;
                 return true;
             }
             catch
