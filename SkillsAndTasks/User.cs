@@ -24,12 +24,6 @@ namespace SkillsAndTasks
             return code;
         }
 
-
-        public override bool Equals(User obj)
-        {
-            return this.Id == obj.Id;
-        }
-
         public bool save()
         {
             try
