@@ -17,5 +17,8 @@ namespace SkillsAndTasks
 
         [DataMember]
         public bool HasError { get; set; }
+
+        [DataMember]
+        public object Data { get; set; }
     }
 }

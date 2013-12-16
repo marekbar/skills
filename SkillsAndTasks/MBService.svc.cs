@@ -45,6 +45,7 @@ namespace SkillsAndTasks
                     result.Result = true;
                     result.HasError = false;
                     result.Error = "";
+                    result.Data = user.Id;
                 }
             }
             catch (Exception ex)
@@ -52,6 +53,7 @@ namespace SkillsAndTasks
                 result.Result = false;
                 result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
+                result.Data = -1;
             }
             return result;
         }
@@ -120,12 +122,14 @@ namespace SkillsAndTasks
                     result.Result = true;
                     result.HasError = false;
                     result.Error = "";
+                    result.Data = skill.Id;
                 }
                 else
                 {
                     result.Result = true;
                     result.HasError = true;
                     result.Error = "Umiejętność nie została dodana.";
+                    result.Data = -1;
                 }
             }
             catch(Exception ex)
@@ -133,6 +137,7 @@ namespace SkillsAndTasks
                 result.Result = false;
                 result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
             }
 
             return result;
@@ -149,12 +154,14 @@ namespace SkillsAndTasks
                     result.Result = true;
                     result.HasError = false;
                     result.Error = "";
+                    result.Data = task.Id;
                 }
                 else
                 {
                     result.Result = true;
                     result.HasError = true;
                     result.Error = "Zadanie nie zostało dodane.";
+                    result.Data = -1;
                 }
             }
             catch (Exception ex)
@@ -162,6 +169,7 @@ namespace SkillsAndTasks
                 result.Result = false;
                 result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
             }
 
             return result;
@@ -179,12 +187,14 @@ namespace SkillsAndTasks
                     result.Result = true;
                     result.HasError = false;
                     result.Error = "";
+                    result.Data = us.Id;
                 }
                 else
                 {
                     result.Result = true;
                     result.HasError = true;
                     result.Error = "Umiejętność nie została powiązana z użytkownikiem.";
+                    result.Data = -1;
                 }
             }
             catch (Exception ex)
@@ -192,6 +202,7 @@ namespace SkillsAndTasks
                 result.Result = false;
                 result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
             }
 
             return result;
