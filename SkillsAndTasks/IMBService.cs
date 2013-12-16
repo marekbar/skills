@@ -18,7 +18,7 @@ namespace SkillsAndTasks
         Response createSkill(Skill skill);
 
         [OperationContract]
-        int createTask(Task task);
+        Response createTask(Task task);
 
         [OperationContract]
         Response createUserSkill(UserSkill us);
