@@ -154,14 +154,14 @@ namespace SkillsAndTasks
                     result.Result = true;
                     result.HasError = false;
                     result.Error = "";
-                    result.Data = task.Id;
+                    result.Data = task;
                 }
                 else
                 {
                     result.Result = true;
                     result.HasError = true;
                     result.Error = "Zadanie nie zostało dodane.";
-                    result.Data = -1;
+                    result.Data = task;
                 }
             }
             catch (Exception ex)
@@ -169,7 +169,9 @@ namespace SkillsAndTasks
                 result.Result = false;
                 result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
-                result.Data = -1;
+                var t = new Task();
+                t.Id = -1;
+                result.Data = t;
             }
 
             return result;
