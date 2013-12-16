@@ -143,38 +143,23 @@ namespace SkillsAndTasks
             return result;
         }
         
-        public Response createTask(Task task)
+        public int createTask(Task task)
         {
-            Response result = new Response();
-
             try
             {
                 if (task.save())
                 {
-                    result.Result = true;
-                    result.HasError = false;
-                    result.Error = "";
-                    result.Data = task;
+                    return task.Id;
                 }
                 else
                 {
-                    result.Result = true;
-                    result.HasError = true;
-                    result.Error = "Zadanie nie zostało dodane.";
-                    result.Data = task;
+                    return -1;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                result.Result = false;
-                result.HasError = true;
-                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
-                var t = new Task();
-                t.Id = -1;
-                result.Data = t;
+                return -1;
             }
-
-            return result;
         }
         
 
