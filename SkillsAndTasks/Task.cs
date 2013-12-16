@@ -23,7 +23,8 @@ namespace SkillsAndTasks
         {
             try
             {
-                Id = db.taskAdd(TaskName, Description, CreationDate, CreatedBy, AssignedTo, ModificationDate, ModifiedBy, IsFinished, Status);
+                var ret = db.taskAdd(TaskName, Description, CreationDate, CreatedBy, AssignedTo, ModificationDate, ModifiedBy, IsFinished, Status).FirstOrDefault().Value;
+                this.Id = (int)ret;
                 return true;
             }
             catch

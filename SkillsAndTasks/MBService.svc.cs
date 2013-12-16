@@ -153,12 +153,12 @@ namespace SkillsAndTasks
                 }
                 else
                 {
-                    return -1;
+                    return -5;
                 }
             }
             catch
             {
-                return -1;
+                return -10;
             }
         }
         

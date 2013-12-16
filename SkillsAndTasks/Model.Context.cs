@@ -134,47 +134,6 @@ namespace SkillsAndTasks
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("skillUpdate", idParameter, nameParameter, descriptionParameter);
         }
     
-        public virtual int taskAdd(string task, string description, Nullable<System.DateTime> creation_date, Nullable<int> created_by, Nullable<int> assigned_to_user, Nullable<System.DateTime> modification_date, Nullable<int> modified_by, Nullable<bool> is_finished, string status)
-        {
-            var taskParameter = task != null ?
-                new ObjectParameter("task", task) :
-                new ObjectParameter("task", typeof(string));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("description", description) :
-                new ObjectParameter("description", typeof(string));
-    
-            var creation_dateParameter = creation_date.HasValue ?
-                new ObjectParameter("creation_date", creation_date) :
-                new ObjectParameter("creation_date", typeof(System.DateTime));
-    
-            var created_byParameter = created_by.HasValue ?
-                new ObjectParameter("created_by", created_by) :
-                new ObjectParameter("created_by", typeof(int));
-    
-            var assigned_to_userParameter = assigned_to_user.HasValue ?
-                new ObjectParameter("assigned_to_user", assigned_to_user) :
-                new ObjectParameter("assigned_to_user", typeof(int));
-    
-            var modification_dateParameter = modification_date.HasValue ?
-                new ObjectParameter("modification_date", modification_date) :
-                new ObjectParameter("modification_date", typeof(System.DateTime));
-    
-            var modified_byParameter = modified_by.HasValue ?
-                new ObjectParameter("modified_by", modified_by) :
-                new ObjectParameter("modified_by", typeof(int));
-    
-            var is_finishedParameter = is_finished.HasValue ?
-                new ObjectParameter("is_finished", is_finished) :
-                new ObjectParameter("is_finished", typeof(bool));
-    
-            var statusParameter = status != null ?
-                new ObjectParameter("status", status) :
-                new ObjectParameter("status", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("taskAdd", taskParameter, descriptionParameter, creation_dateParameter, created_byParameter, assigned_to_userParameter, modification_dateParameter, modified_byParameter, is_finishedParameter, statusParameter);
-        }
-    
         public virtual int taskDelete(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -387,6 +346,47 @@ namespace SkillsAndTasks
         public virtual ObjectResult<userSkillsGetAll_Result> userSkillsGetAll()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<userSkillsGetAll_Result>("userSkillsGetAll");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> taskAdd(string task, string description, Nullable<System.DateTime> creation_date, Nullable<int> created_by, Nullable<int> assigned_to_user, Nullable<System.DateTime> modification_date, Nullable<int> modified_by, Nullable<bool> is_finished, string status)
+        {
+            var taskParameter = task != null ?
+                new ObjectParameter("task", task) :
+                new ObjectParameter("task", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            var creation_dateParameter = creation_date.HasValue ?
+                new ObjectParameter("creation_date", creation_date) :
+                new ObjectParameter("creation_date", typeof(System.DateTime));
+    
+            var created_byParameter = created_by.HasValue ?
+                new ObjectParameter("created_by", created_by) :
+                new ObjectParameter("created_by", typeof(int));
+    
+            var assigned_to_userParameter = assigned_to_user.HasValue ?
+                new ObjectParameter("assigned_to_user", assigned_to_user) :
+                new ObjectParameter("assigned_to_user", typeof(int));
+    
+            var modification_dateParameter = modification_date.HasValue ?
+                new ObjectParameter("modification_date", modification_date) :
+                new ObjectParameter("modification_date", typeof(System.DateTime));
+    
+            var modified_byParameter = modified_by.HasValue ?
+                new ObjectParameter("modified_by", modified_by) :
+                new ObjectParameter("modified_by", typeof(int));
+    
+            var is_finishedParameter = is_finished.HasValue ?
+                new ObjectParameter("is_finished", is_finished) :
+                new ObjectParameter("is_finished", typeof(bool));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("taskAdd", taskParameter, descriptionParameter, creation_dateParameter, created_byParameter, assigned_to_userParameter, modification_dateParameter, modified_byParameter, is_finishedParameter, statusParameter);
         }
     }
 }

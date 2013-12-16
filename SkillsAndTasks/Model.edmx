@@ -270,17 +270,6 @@
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="description" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="taskAdd">
-            <Parameter Name="task" Mode="In" Type="String" />
-            <Parameter Name="description" Mode="In" Type="String" />
-            <Parameter Name="creation_date" Mode="In" Type="DateTime" />
-            <Parameter Name="created_by" Mode="In" Type="Int32" />
-            <Parameter Name="assigned_to_user" Mode="In" Type="Int32" />
-            <Parameter Name="modification_date" Mode="In" Type="DateTime" />
-            <Parameter Name="modified_by" Mode="In" Type="Int32" />
-            <Parameter Name="is_finished" Mode="In" Type="Boolean" />
-            <Parameter Name="status" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="taskDelete">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -344,6 +333,17 @@
             <Parameter Name="code" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="userSkillsGetAll" ReturnType="Collection(marekbarModel.userSkillsGetAll_Result)" />
+          <FunctionImport Name="taskAdd" ReturnType="Collection(Decimal)">
+            <Parameter Name="task" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="creation_date" Mode="In" Type="DateTime" />
+            <Parameter Name="created_by" Mode="In" Type="Int32" />
+            <Parameter Name="assigned_to_user" Mode="In" Type="Int32" />
+            <Parameter Name="modification_date" Mode="In" Type="DateTime" />
+            <Parameter Name="modified_by" Mode="In" Type="Int32" />
+            <Parameter Name="is_finished" Mode="In" Type="Boolean" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Skills">
           <Key>
@@ -572,7 +572,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="skillsAdd" FunctionName="marekbarModel.Store.skillsAdd" />
           <FunctionImportMapping FunctionImportName="skillUpdate" FunctionName="marekbarModel.Store.skillUpdate" />
-          <FunctionImportMapping FunctionImportName="taskAdd" FunctionName="marekbarModel.Store.taskAdd" />
           <FunctionImportMapping FunctionImportName="taskDelete" FunctionName="marekbarModel.Store.taskDelete" />
           <FunctionImportMapping FunctionImportName="taskGet" FunctionName="marekbarModel.Store.taskGet">
             <ResultMapping>
@@ -651,6 +650,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="taskAdd" FunctionName="marekbarModel.Store.taskAdd" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
