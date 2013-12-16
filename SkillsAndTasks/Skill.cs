@@ -51,6 +51,12 @@ namespace SkillsAndTasks
            }
         }
 
+
+        public override bool Equals(Skill obj)
+        {
+            return this.Id == obj.Id;
+        }
+
         public static List<Skill> GetFromDatabaseAll()
         {
             List<Skill> skills = new List<Skill>();
