@@ -1,26 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Web;
-
+﻿/*
+ * Skills and tasks project
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
+ * marekbar1985@gmail.com
+ */
 namespace SkillsAndTasks
 {
-    [DataContract]
+    /// <summary>
+    /// Database data for remote user who want to syncronize its local xml database
+    /// </summary>
+    [System.Runtime.Serialization.DataContract]
     public class DatabaseData
     {
-        [DataMember]
-        public List<User> Users { get; set; }
+        /// <summary>
+        /// User list
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
+        public System.Collections.Generic.List<User> Users { get; set; }
 
-        [DataMember]
-        public List<Skill> Skills { get; set; }
+        /// <summary>
+        /// Skill list
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
+        public System.Collections.Generic.List<Skill> Skills { get; set; }
 
-        [DataMember]
-        public List<Task> Tasks { get; set; }
+        /// <summary>
+        /// Tasks list
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
+        public System.Collections.Generic.List<Task> Tasks { get; set; }
 
-        [DataMember]
-        public List<UserSkill> UserSkills { get; set; }
+        /// <summary>
+        /// UserSkill list
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
+        public System.Collections.Generic.List<UserSkill> UserSkills { get; set; }
 
+        /// <summary>
+        /// Gets DatabaseData which contains generic lists of: users, skills, tasks and user skills
+        /// </summary>
+        /// <returns>DatabaseData</returns>
         public static DatabaseData Get()
         {
             DatabaseData db = new DatabaseData();

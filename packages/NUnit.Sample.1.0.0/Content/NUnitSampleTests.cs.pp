@@ -1,6 +1,6 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace SkillsAndTasks {
+namespace $rootnamespace$ {
     [TestFixture]
     public class NUnitSampleTests {
         [Test]

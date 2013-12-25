@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="marekbarModelStoreContainer">
-          <EntitySet Name="Skills" EntityType="marekbarModel.Store.Skills" store:Type="Tables" store:Schema="dbo" store:Name="Skills">
+          <EntitySet Name="Skills" EntityType="marekbarModel.Store.Skills" store:Type="Tables" store:Schema="dbo" store:Name="Skills" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [Skills].[id] AS [id], 
       [Skills].[name] AS [name], 
       [Skills].[description] AS [description]
       FROM [dbo].[Skills] AS [Skills]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Tasks" EntityType="marekbarModel.Store.Tasks" store:Type="Tables" store:Schema="dbo" store:Name="Tasks">
+          <EntitySet Name="Tasks" EntityType="marekbarModel.Store.Tasks" store:Type="Tables" store:Schema="dbo" store:Name="Tasks" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [Tasks].[id] AS [id], 
       [Tasks].[task] AS [task], 
@@ -27,7 +27,7 @@
       [Tasks].[status] AS [status]
       FROM [dbo].[Tasks] AS [Tasks]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Users" EntityType="marekbarModel.Store.Users" store:Type="Tables" store:Schema="dbo" store:Name="Users">
+          <EntitySet Name="Users" EntityType="marekbarModel.Store.Users" store:Type="Tables" store:Schema="dbo" store:Name="Users" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [Users].[id] AS [id], 
       [Users].[name] AS [name], 
@@ -41,7 +41,7 @@
       [Users].[code] AS [code]
       FROM [dbo].[Users] AS [Users]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills">
+          <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [UserSkills].[id] AS [id], 
       [UserSkills].[user_id] AS [user_id], 
@@ -233,7 +233,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="marekbarModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="marekbarModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="marekbarEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Skills" EntityType="marekbarModel.Skills" />
           <EntitySet Name="Tasks" EntityType="marekbarModel.Tasks" />
@@ -482,7 +482,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="marekbarModelStoreContainer" CdmEntityContainer="marekbarEntities">
           <EntitySetMapping Name="Skills">
             <EntityTypeMapping TypeName="marekbarModel.Skills">
@@ -656,7 +656,7 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -671,6 +671,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams />
   </Designer>
 </edmx:Edmx>

@@ -1,17 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ * Skills and tasks project
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
+ * marekbar1985@gmail.com
+ */
 using System.Linq;
-using System.Web;
 
 namespace SkillsAndTasks
 {
+    /// <summary>
+    /// Skill - what you know - with description, implements Action methods
+    /// <see cref="Action"/>
+    /// </summary>
     public class Skill : Action
     {
+        /// <summary>
+        /// Database entity
+        /// </summary>
         private marekbarEntities db = new marekbarEntities();
-        public int Id { get; set; }
-        public String Name { get; set; }
-        public String Description { get; set; }
 
+        /// <summary>
+        /// Skill identifier
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Skill name
+        /// </summary>
+        public System.String Name { get; set; }
+
+        /// <summary>
+        /// Skill description
+        /// </summary>
+        public System.String Description { get; set; }
+
+        /// <summary>
+        /// Save skill to database
+        /// </summary>
+        /// <returns>true - saved, false - saving failed</returns>
         public bool save()
         {
             try
@@ -25,6 +51,10 @@ namespace SkillsAndTasks
             }
         }
 
+        /// <summary>
+        /// Skill update
+        /// </summary>
+        /// <returns>true - updated, false - failure</returns>
         public bool update()
         {
             try
@@ -38,6 +68,10 @@ namespace SkillsAndTasks
             }
         }
 
+        /// <summary>
+        /// Skill remove
+        /// </summary>
+        /// <returns>true - removed, false - failure</returns>
         public bool delete()
         {
            try
@@ -51,9 +85,13 @@ namespace SkillsAndTasks
            }
         }
 
-        public static List<Skill> GetFromDatabaseAll()
+        /// <summary>
+        /// Gets skill list from database
+        /// </summary>
+        /// <returns>Generic Skill list</returns>
+        public static System.Collections.Generic.List<Skill> GetFromDatabaseAll()
         {
-            List<Skill> skills = new List<Skill>();
+            System.Collections.Generic.List<Skill> skills = new System.Collections.Generic.List<Skill>();
 
             try
             {

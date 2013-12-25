@@ -1,29 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ * Skills and tasks project
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
+ * marekbar1985@gmail.com
+ */
 using System.Linq;
-using System.Web;
 
 namespace SkillsAndTasks
 {
+    /// <summary>
+    /// User, implements Action
+    /// </summary>
     public class User : Action
     {
+        /// <summary>
+        /// Database entity
+        /// </summary>
         private marekbarEntities db = new marekbarEntities();
 
+        /// <summary>
+        /// User identifier
+        /// </summary>
         public int Id { get; set; }
-        public String Name { get; set; }
-        public String Surname { get; set; }
-        public String Login { get; set; }
-        public String Password { get; set; }
-        public String Town { get; set; }
-        public String Mail { get; set; }
-        public String Phone { get; set; }
 
-        private String code = "";
-        public String GetCode()
+        /// <summary>
+        /// User first name
+        /// </summary>
+        public System.String Name { get; set; }
+
+        /// <summary>
+        /// User last name
+        /// </summary>
+        public System.String Surname { get; set; }
+
+        /// <summary>
+        /// User login
+        /// </summary>
+        public System.String Login { get; set; }
+
+        /// <summary>
+        /// User password
+        /// </summary>
+        public System.String Password { get; set; }
+
+        /// <summary>
+        /// User town
+        /// </summary>
+        public System.String Town { get; set; }
+
+        /// <summary>
+        /// User mail
+        /// </summary>
+        public System.String Mail { get; set; }
+
+        /// <summary>
+        /// Use phone
+        /// </summary>
+        public System.String Phone { get; set; }
+
+        /// <summary>
+        /// User activation code
+        /// </summary>
+        private System.String code = "";
+
+        /// <summary>
+        /// Gets account activation code
+        /// </summary>
+        /// <returns></returns>
+        public System.String GetCode()
         {
             return code;
         }
 
+        /// <summary>
+        /// Save User
+        /// </summary>
+        /// <returns>true - saved, false - failure</returns>
         public bool save()
         {
             try
@@ -32,7 +84,7 @@ namespace SkillsAndTasks
                 Id = db.userAdd(Name, Surname, Login, Password, Town, Mail, Phone, code);
                 
                 var activation = new ActivateAccount(this, code);
-                if (!activation.sendCode()) throw new Exception("Kod aktywacyjny nie został wysłany. Skontaktuj się z marekbar1985@gmail.com");
+                if (!activation.sendCode()) throw new System.Exception("Kod aktywacyjny nie został wysłany. Skontaktuj się z marekbar1985@gmail.com");
                 return true;
             }
             catch
@@ -41,6 +93,10 @@ namespace SkillsAndTasks
             }
         }
 
+        /// <summary>
+        /// Update user data
+        /// </summary>
+        /// <returns>true - user updated, false - failure</returns>
         public bool update()
         {
             try
@@ -54,6 +110,10 @@ namespace SkillsAndTasks
             }
         }
 
+        /// <summary>
+        /// Delete user
+        /// </summary>
+        /// <returns>true - user removed, false - user removal failure</returns>
         public bool delete()
         {
             try
@@ -67,11 +127,19 @@ namespace SkillsAndTasks
             }
         }
 
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <returns>true - user created, false - failure</returns>
         public bool create()
         {
             return save();
         }
 
+        /// <summary>
+        /// Check if user is activated and can work
+        /// </summary>
+        /// <returns>true - all fine, work, false - disabled</returns>
         public bool CanWork()
         {
             try
@@ -84,15 +152,24 @@ namespace SkillsAndTasks
             }
         }
 
-        private String getCode()
+        /// <summary>
+        /// Generate user activation code
+        /// </summary>
+        /// <returns>String - activation code</returns>
+        private System.String getCode()
         {
+            var n = System.DateTime.Now;
             RandomStringGenerator.RandomStringGenerator rsg = new RandomStringGenerator.RandomStringGenerator();
-            return DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + rsg.Generate(10) + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
+            return n.Year.ToString() + n.Month.ToString() + n.Day.ToString() + rsg.Generate(10) + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString();
         }
 
-        public static List<User> GetFromDatabaseAll()
+        /// <summary>
+        /// Get user list
+        /// </summary>
+        /// <returns>Generic User list</returns>
+        public static System.Collections.Generic.List<User> GetFromDatabaseAll()
         {
-            List<User> users = new List<User>();
+            System.Collections.Generic.List<User> users = new System.Collections.Generic.List<User>();
             try
             {
                 marekbarEntities db = new marekbarEntities();

@@ -1,24 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Web;
-
+﻿/*
+ * Skills and tasks project
+ * Author: Marek Bar 33808
+ * Wyższa Szkoła Inforatyki i Zarządzania w Rzeszowie
+ * marekbar1985@gmail.com
+ */
 namespace SkillsAndTasks
 {
-    [DataContract]
+    /// <summary>
+    /// Response from web service - used for better connnnntrl of what's going on
+    /// </summary>
+    [System.Runtime.Serialization.DataContract]
     public class Response
     {
-        [DataMember]
+        /// <summary>
+        /// Web service method call general result
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
         public bool Result { get; set; }
 
-        [DataMember]
-        public String Error { get; set; }
+        /// <summary>
+        /// Web service method call errors
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
+        public System.String Error { get; set; }
 
-        [DataMember]
+        /// <summary>
+        /// Web service method call internal method error occurance
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
         public bool HasError { get; set; }
 
-        [DataMember]
+        /// <summary>
+        /// Web service method result data object
+        /// </summary>
+        [System.Runtime.Serialization.DataMember]
         public object Data { get; set; }
     }
 }
