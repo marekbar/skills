@@ -240,7 +240,7 @@ namespace SkillsAndTasks
                 result.Result = true;
                 result.HasError = false;
                 result.Error = "";
-                result.Data = skill;
+                result.Data = skill.Id;
             }
             catch (Exception ex)
             {
