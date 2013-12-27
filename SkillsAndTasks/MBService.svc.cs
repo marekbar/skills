@@ -142,6 +142,8 @@ namespace SkillsAndTasks
 
             return result;
         }
+
+
         
         public Response createTask(Task task)
         {
@@ -204,6 +206,49 @@ namespace SkillsAndTasks
                 result.Data = -1;
             }
 
+            return result;
+        }
+
+
+        public Response deleteSkill(int id)
+        {
+            Response result = new Response();
+            try
+            {
+                db.skillDelete(id);
+                result.Result = true;
+                result.HasError = false;
+                result.Error = "";
+                result.Data = id;
+            }
+            catch (Exception ex) 
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
+            }
+            return result;
+        }
+
+        public Response updateSkill(Skill skill)
+        {
+            Response result = new Response();
+            try
+            {
+                db.skillUpdate(skill.Id, skill.Name, skill.Description);
+                result.Result = true;
+                result.HasError = false;
+                result.Error = "";
+                result.Data = skill;
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
+            }
             return result;
         }
     }

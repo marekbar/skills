@@ -33,6 +33,22 @@ namespace SkillsAndTasks
         Response createSkill(Skill skill);
 
         /// <summary>
+        /// Deletes skill
+        /// </summary>
+        /// <param name="id">skill id</param>
+        /// <returns>Response</returns>
+        [System.ServiceModel.OperationContract]
+        Response deleteSkill(int id);
+
+        /// <summary>
+        /// Update skill
+        /// </summary>
+        /// <param name="skill">Skill</param>
+        /// <returns>Response</returns>
+        [System.ServiceModel.OperationContract]
+        Response updateSkill(Skill skill);
+
+        /// <summary>
         /// Create task
         /// </summary>
         /// <param name="task">Task - task from user</param>
