@@ -240,7 +240,92 @@ namespace SkillsAndTasks
                 result.Result = true;
                 result.HasError = false;
                 result.Error = "";
-                result.Data = skill.Id;
+                result.Data = skill.Id;//zwracanie obiektu rozwala klienta - błąd 502 Bad Gateway
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
+            }
+            return result;
+        }
+
+
+        public Response deleteTask(int id)
+        {
+            Response result = new Response();
+            try
+            {
+                db.taskDelete(id);
+                result.Result = true;
+                result.HasError = false;
+                result.Error = "";
+                result.Data = id;
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
+            }
+            return result;
+        }
+
+        public Response updateTask(Task task)
+        {
+            Response result = new Response();
+            try
+            {
+                db.taskUpdate(task.Id, task.TaskName, task.Description, task.CreationDate, task.CreatedBy, task.AssignedTo, task.ModificationDate, task.ModifiedBy, task.IsFinished, task.Status);
+                result.Result = true;
+                result.HasError = false;
+                result.Error = "";
+                result.Data = task.Id;//zwracanie obiektu rozwala klienta - błąd 502 Bad Gateway, a ja nie potrzebuję obiektu z powrotem, bo po co
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
+            }
+            return result;
+        }
+
+        public Response deleteUserSkill(int id)
+        {
+            Response result = new Response();
+            try
+            {
+                db.delUserSkills(id);
+                result.Result = true;
+                result.HasError = false;
+                result.Error = "";
+                result.Data = id;
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.HasError = true;
+                result.Error = ex.Message + (ex.InnerException == null ? "" : " " + ex.InnerException.Message);
+                result.Data = -1;
+            }
+            return result;
+        }
+
+        public Response updateUserSkill(UserSkill us)
+        {
+            Response result = new Response();
+            try
+            {
+                db.modUserSkills(us.Id, us.UserId, us.SkillId);
+                result.Result = true;
+                result.HasError = false;
+                result.Error = "";
+                result.Data = us.Id;//zwracanie obiektu rozwala klienta - błąd 502 Bad Gateway
             }
             catch (Exception ex)
             {

@@ -59,6 +59,22 @@ namespace SkillsAndTasks
         Response createTask(Task task);
 
         /// <summary>
+        /// Deletes task
+        /// </summary>
+        /// <param name="id">int - task id</param>
+        /// <returns>Response</returns>
+        [System.ServiceModel.OperationContract]
+        Response deleteTask(int id);
+
+        /// <summary>
+        /// Updates task
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <returns>Response</returns>
+        [System.ServiceModel.OperationContract]
+        Response updateTask(Task task);
+
+        /// <summary>
         /// UserSkill - create new association user with skill
         /// </summary>
         /// <param name="us">UserSkill - user skill</param>
@@ -67,6 +83,22 @@ namespace SkillsAndTasks
         /// <returns>Response</returns>
         [System.ServiceModel.OperationContract]
         Response createUserSkill(UserSkill us);
+
+        /// <summary>
+        /// Deletes user - skill connections
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Response</returns>
+        [System.ServiceModel.OperationContract]
+        Response deleteUserSkill(int id);
+
+        /// <summary>
+        /// Updates user - skill connection
+        /// </summary>
+        /// <param name="us">UserSkill</param>
+        /// <returns>Response</returns>
+        [System.ServiceModel.OperationContract]
+        Response updateUserSkill(UserSkill us);
 
         /// <summary>
         /// Check if login exists
