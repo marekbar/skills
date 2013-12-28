@@ -96,11 +96,13 @@ namespace SkillsAndTasks
             try
             {
                 result.Result = user.CanWork();
+                result.HasError = !result.Result;
                 result.Error = "";
             }
             catch (Exception ex)
             {
                 result.Result = false;
+                result.HasError = true;
                 result.Error = ex.Message + (ex.InnerException != null ? ex.InnerException.Message : "");
             }
             return result;
