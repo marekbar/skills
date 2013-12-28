@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace SkillsAndTasks
 {
@@ -13,8 +8,16 @@ namespace SkillsAndTasks
     [ServiceBehaviorAttribute(IgnoreExtensionDataObject=true)]//as disabled breaks distinct on client side
     public class MBService : IMBService
     {
+        /// <summary>
+        /// Database Entity
+        /// </summary>
         marekbarEntities db = new marekbarEntities();
 
+        /// <summary>
+        /// Check if login exists
+        /// </summary>
+        /// <param name="login">String</param>
+        /// <returns>Response</returns>
         public Response loginExists(String login)
         {
             Response result = new Response();
@@ -34,6 +37,11 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <param name="user">User</param>
+        /// <returns>Response</returns>
         public Response createAccount(User user)
         {
             Response result = new Response();
@@ -58,6 +66,11 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Activate account by sending code
+        /// </summary>
+        /// <param name="code">String</param>
+        /// <returns>Response</returns>
         public Response activateByCode(String code)
         {
             Response result = new Response();
@@ -87,6 +100,12 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Check if user is allowed to use web service
+        /// </summary>
+        /// <param name="name">String - login</param>
+        /// <param name="password">String - password</param>
+        /// <returns>Response</returns>
         public Response login(String name, String password)
         {
             Response result = new Response();
@@ -111,11 +130,20 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Gets database data to sync
+        /// </summary>
+        /// <returns>DatabaseData</returns>
         public DatabaseData getDatabase()
         {
             return DatabaseData.Get();
         }
 
+        /// <summary>
+        /// Create new skill
+        /// </summary>
+        /// <param name="skill">Skill</param>
+        /// <returns>Response</returns>
         public Response createSkill(Skill skill)
         {
             Response result = new Response();
@@ -149,7 +177,11 @@ namespace SkillsAndTasks
         }
 
 
-        
+        /// <summary>
+        /// Create new task
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <returns>Response</returns>
         public Response createTask(Task task)
         {
             Response result = new Response();
@@ -181,7 +213,11 @@ namespace SkillsAndTasks
             return result;
         }
         
-
+        /// <summary>
+        /// Create new association user - skill
+        /// </summary>
+        /// <param name="us">UserSkill</param>
+        /// <returns>Response</returns>
         public Response createUserSkill(UserSkill us)
         {
             Response result = new Response();
@@ -214,7 +250,11 @@ namespace SkillsAndTasks
             return result;
         }
 
-
+        /// <summary>
+        /// Remove skill
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Response</returns>
         public Response deleteSkill(int id)
         {
             Response result = new Response();
@@ -236,6 +276,11 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Modify skil
+        /// </summary>
+        /// <param name="skill">Skill</param>
+        /// <returns>Response</returns>
         public Response updateSkill(Skill skill)
         {
             Response result = new Response();
@@ -257,7 +302,11 @@ namespace SkillsAndTasks
             return result;
         }
 
-
+        /// <summary>
+        /// Delete task
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Response</returns>
         public Response deleteTask(int id)
         {
             Response result = new Response();
@@ -279,6 +328,11 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Modify task
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <returns>Response</returns>
         public Response updateTask(Task task)
         {
             Response result = new Response();
@@ -300,6 +354,11 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Delete association user - skill
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Response</returns>
         public Response deleteUserSkill(int id)
         {
             Response result = new Response();
@@ -321,6 +380,11 @@ namespace SkillsAndTasks
             return result;
         }
 
+        /// <summary>
+        /// Modify association user - skill
+        /// </summary>
+        /// <param name="us">UserSkill</param>
+        /// <returns>Response</returns>
         public Response updateUserSkill(UserSkill us)
         {
             Response result = new Response();
