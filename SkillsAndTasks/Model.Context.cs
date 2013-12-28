@@ -236,7 +236,7 @@ namespace SkillsAndTasks
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("userUpdate", idParameter, nameParameter, surnameParameter, loginParameter, passwordParameter, townParameter, mailParameter, phoneParameter);
         }
     
-        public virtual int checkUser(string login, string password)
+        public virtual int checkUser(string login, string password, ObjectParameter count)
         {
             var loginParameter = login != null ?
                 new ObjectParameter("login", login) :
@@ -246,7 +246,7 @@ namespace SkillsAndTasks
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("checkUser", loginParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("checkUser", loginParameter, passwordParameter, count);
         }
     
         public virtual int userLoginExists(string login, ObjectParameter result)

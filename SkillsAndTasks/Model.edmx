@@ -4,16 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="marekbarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="marekbarModelStoreContainer">
-          <EntitySet Name="Skills" EntityType="marekbarModel.Store.Skills" store:Type="Tables" store:Schema="dbo" store:Name="Skills" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Skills" EntityType="marekbarModel.Store.Skills" store:Type="Tables" store:Schema="dbo" store:Name="Skills">
             <DefiningQuery>SELECT 
       [Skills].[id] AS [id], 
       [Skills].[name] AS [name], 
       [Skills].[description] AS [description]
       FROM [dbo].[Skills] AS [Skills]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Tasks" EntityType="marekbarModel.Store.Tasks" store:Type="Tables" store:Schema="dbo" store:Name="Tasks" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Tasks" EntityType="marekbarModel.Store.Tasks" store:Type="Tables" store:Schema="dbo" store:Name="Tasks">
             <DefiningQuery>SELECT 
       [Tasks].[id] AS [id], 
       [Tasks].[task] AS [task], 
@@ -27,7 +27,7 @@
       [Tasks].[status] AS [status]
       FROM [dbo].[Tasks] AS [Tasks]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Users" EntityType="marekbarModel.Store.Users" store:Type="Tables" store:Schema="dbo" store:Name="Users" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Users" EntityType="marekbarModel.Store.Users" store:Type="Tables" store:Schema="dbo" store:Name="Users">
             <DefiningQuery>SELECT 
       [Users].[id] AS [id], 
       [Users].[name] AS [name], 
@@ -41,7 +41,7 @@
       [Users].[code] AS [code]
       FROM [dbo].[Users] AS [Users]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="UserSkills" EntityType="marekbarModel.Store.UserSkills" store:Type="Tables" store:Schema="dbo" store:Name="UserSkills">
             <DefiningQuery>SELECT 
       [UserSkills].[id] AS [id], 
       [UserSkills].[user_id] AS [user_id], 
@@ -132,6 +132,7 @@
         <Function Name="checkUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="login" Type="nvarchar" Mode="In" />
           <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="count" Type="int" Mode="InOut" />
         </Function>
         <Function Name="delUserSkills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -301,6 +302,7 @@
           <FunctionImport Name="checkUser">
             <Parameter Name="login" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="count" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="userLoginExists">
             <Parameter Name="login" Mode="In" Type="String" />

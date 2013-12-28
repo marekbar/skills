@@ -144,7 +144,9 @@ namespace SkillsAndTasks
         {
             try
             {
-                return db.checkUser(Login, Password) == 1;     
+                var count = new System.Data.Objects.ObjectParameter("count", 0);
+                db.checkUser(Login, Password, count);
+                return  (int)count.Value == 1;     
             }
             catch
             {
