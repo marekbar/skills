@@ -49,7 +49,7 @@ namespace SkillsAndTasks
                 mail.From = "skillsandtasks@gmail.com";
                 mail.FromName = "Umiejętności i zadania";
                 System.Text.StringBuilder b = new System.Text.StringBuilder();
-                b.Append("Witaj, " + user.Name + " " + user.Surname);
+                b.Append("Witaj, " + user.Name + " " + user.Surname + "(" + user.Login + ")");
                 b.AppendLine();
                 b.Append("Twój kod aktywacji konta w aplikacji Umiejętności i zadania to:");
                 b.AppendLine();

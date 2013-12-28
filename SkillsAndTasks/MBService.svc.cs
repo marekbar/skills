@@ -97,7 +97,10 @@ namespace SkillsAndTasks
             {
                 result.Result = user.CanWork();
                 result.HasError = !result.Result;
-                result.Error = "";
+                if (result.Result == false)
+                {
+                    throw new Exception("Nie można zalogować użytkownika: " + name);
+                }
             }
             catch (Exception ex)
             {
